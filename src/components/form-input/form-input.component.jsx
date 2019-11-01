@@ -12,6 +12,7 @@ const FormInput = ({handleChange , label , ...otherProps }) =>(
             </label>)
             : null
         }
+      
     </div>
 )
 
