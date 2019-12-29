@@ -1,7 +1,7 @@
 import React from 'react';
 import './App.css';
 
-import {Switch , Route} from 'react-router-dom' ;
+import {Switch , Route , Redirect} from 'react-router-dom' ;
 import {connect} from 'react-redux';
 import HomePage from './pages/homepage/homepage.component' ;
 import ShopPage from './pages/shop/shop.component';
@@ -50,7 +50,16 @@ class App extends React.Component {
         <Switch>
             <Route exact path='/' component={HomePage} />
             <Route path='/shop' component={ShopPage} />
-            <Route path='/signin' component={SignInAndSignUpPage} />
+            <Route 
+              exact
+              path='/signin'
+              render={()=>
+                this.props.currentUser?(
+                  <Redirect to='/' />
+                ) : (
+                  <SignInAndSignUpPage />
+                )
+              } />
         </Switch>
          
        </div>
@@ -59,12 +68,18 @@ class App extends React.Component {
 
 };
 
+//for dont allow to user who sign in to do mess or access to the code we need Redirect in react Dom and current user with below function :
+//and also we should change the Route for Sign in and after sigin in redirect us to home page
+const mapStateToProps = ({user}) => ({
+  currentUser : user.currentUser
+});
+
 const mapDispatchToProps = dispatch =>({
     setCurrentUser:user=> dispatch(setCurrentUser(user))
 })
-//whatever u pass me , i'll get the reducer as an action
+//whatever u pass me , i'll get the reducer as an action that pass to reducers 
 
-export default connect(null,mapDispatchToProps)(App);
+export default connect(mapStateToProps,mapDispatchToProps)(App);
 
 //first argument : mapstate to props but app doesn't need current user itself to do sth on it
 //second :dispatch(for action)

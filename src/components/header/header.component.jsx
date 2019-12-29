@@ -37,8 +37,8 @@ const Header = ({currentUser }) =>(
 
 const mapStateToProps = state =>({
     currentUser : state.user.currentUser
-});
+})
 
-export default (mapStateToProps)(Header) ;
+export default connect(mapStateToProps)(Header) ;
 
 //with this 4 code lines we can ommit the passing current user in app.js to HEADER
