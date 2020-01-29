@@ -9,6 +9,16 @@ export const addItem =item =>({
     payload : item 
 })
 
+export const removeItem= item =>({
+    type: CartActionTypes.REMOVE_ITEM,
+    payload:item 
+})
+
+export const clearItemFromCart = item =>({
+    type: CartActionTypes.CLEAR_ITEM_FROM_CART,
+    payload: item
+})
+
 //this array get the items  , 
 //type -> hey im adding item
 //payload -> everything we want like here is the item that we want to add

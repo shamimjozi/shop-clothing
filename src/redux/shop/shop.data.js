@@ -1,5 +1,5 @@
 const SHOP_DATA = [
-    {
+     {
       id: 111,
       title: 'Hats',
       routeName: 'hats',
@@ -244,6 +244,6 @@ const SHOP_DATA = [
         }
       ]
     }
-  ];
+];
   
 export default SHOP_DATA ;
